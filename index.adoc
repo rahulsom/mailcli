@@ -1,6 +1,7 @@
 = MailCLI
 Rahul Somasunderam <rahul.som@gmail.com>
 :toc: left
+:binaryname: mailcli
 
 CLI that lets you pipe output to email using SendGrid
 
@@ -15,11 +16,11 @@ automate emails.
 May be you're using Exchange and can't really automate email without
 jumping through hoops.
 
-Well, look no further; we now have `mailcli`.
+Well, look no further; we now have `{binaryName}`.
 
 == Getting Started
 You will have to sign up for a SendGrid account first. This will require
-you to use an email address that's not a public domain. Once you're done
+you to use an email address that's not a public mail server. Once you're done
 signing up for your account, in your shell profile declare some
 environment variables
 
@@ -31,70 +32,153 @@ export SENDGRID_FROM=sender@example.com
 ----
 
 You could skip that and set your environment every time you want to run
-the `mailcli` command, but that ends up getting really painful.
+the `{binaryName}` command, but that ends up getting really painful.
 
 == Installation
 
-You have several options to install mailcli
+You have several options to install {binaryName}
 
 === Go get
 
 If you have already installed the go sdk on your machine and prefer using
 `go get`, you can use that.
 
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
-go get github.com/rahulsom/mailcli
+go get github.com/rahulsom/{binaryName}
 ----
 
 === Direct download
 
-TODO
+NOTE: This is WIP. We now have the capability to generate the binaries. It
+will take some work to get them uploaded to bintray for consumption. Also
+Mac Signing is not implemented yet.
+
+[cols="4*"]
+|===
+|
+| 386
+| amd64
+| arm
+
+| Darwin (Apple Mac)
+| {binaryname}_darwin_386.zip
+| {binaryname}_darwin_amd64.zip
+|
+
+| FreeBSD
+| {binaryname}_freebsd_386.zip
+| {binaryname}_freebsd_amd64.zip
+| {binaryname}_freebsd_arm.zip
+
+| Debian
+| {binaryname}_snapshot_amd64.deb
+| {binaryname}_snapshot_armhf.deb
+| {binaryname}_snapshot_i386.deb
+
+| Other Linux
+| {binaryname}_linux_386.tar.gz
+| {binaryname}_linux_amd64.tar.gz
+| {binaryname}_linux_arm.tar.gz
+
+| MS Windows
+| {binaryname}_windows_386.zip
+| {binaryname}_windows_amd64.zip
+|
+
+| NetBSD
+| {binaryname}_netbsd_386.zip
+| {binaryname}_netbsd_amd64.zip
+| {binaryname}_netbsd_arm.zip
+
+| OpenBSD
+| {binaryname}_openbsd_386.zip
+| {binaryname}_openbsd_amd64.zip
+|
+
+| DragonFly
+| {binaryname}_dragonfly_386.zip
+| {binaryname}_dragonfly_amd64.zip
+|
+
+| NaCl
+| {binaryname}_nacl_386.zip
+| {binaryname}_nacl_amd64p32.zip
+| {binaryname}_nacl_arm.zip
+
+| Solaris
+|
+| {binaryname}_solaris_amd64.zip
+|
+
+| Plan 9
+| {binaryname}_plan9_386.zip
+|
+|
+
+|===
+
+
+
+==== Other files
+
+* link:.goxc-temp/control.tar.gz[control.tar.gz]
+* link:.goxc-temp/data.tar.gz[data.tar.gz]
 
 == Usage
 
 === Help
 To see help, say
 
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
-mailcli -h
+{binaryName} -h
 ----
 
 === Text
 
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
-cat testresult.txt | mailcli -to "foo@bar.com" -s "Test Result"
+cat testresult.txt | {binaryName} -to "foo@bar.com" -s "Test Result"
 ----
 
 === HTML
 
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
-cat document.html | mailcli -to "foo@bar.com" -s "What's for lunch" -html
+cat document.html | {binaryName} -to "foo@bar.com" -s "What's for lunch" -html
 ----
 
 === Asciidoctor
 
 If you have asciidoctor installed, you could pipe that to an email too.
 
-[source,bash]
+[source,bash,subs="attributes+"]
 ----
-asciidoctor index.adoc -o - | mailcli -to "foo@bar.com" -s "MailCLI Docs" -html
+asciidoctor index.adoc -o - | {binaryName} -to "foo@bar.com" -s "MailCLI Docs" -html
 ----
 
 == Email Address Format
 
 These are acceptable formats for emails
 
-* user@domain.com
-* Name <user@domain.com>
-* Very Long Name <user@domain.com>
-* "Name in quotes" <user@domain.com>
+----
+user@domain.com
+Name <user@domain.com>
+Very Long Name <user@domain.com>
+"Name in quotes" <user@domain.com>
+----
 
 If you have multiple recipients in a field, you must separate them using commas.
 *Not seimcolons*
+
+[source,bash,subs="attributes+"]
+----
+cat testresult.txt | {binaryName} \
+        -to "foo@bar.com, Private Snafu<snafu@tarfu.com>, Fubar@tarfu.com" \
+        -s "Test Result"
+----
+
 
 == TODO
 
