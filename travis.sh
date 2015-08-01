@@ -4,7 +4,7 @@ go build
 if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_REPO_SLUG == "rahulsom/mailcli" && $TRAVIS_PULL_REQUEST == 'false' ]]; then
   goxc
 
-  SNAPSHOT_DIR=$GOPATH/bin/mailcli-xc/snapshot
+  SNAPSHOT_DIR=$HOME/gopath/bin/mailcli-xc/snapshot
   asciidoctor index.adoc
 
   git config --global user.name "$GIT_NAME"

@@ -1,5 +1,5 @@
-language: go
 sudo: false
+language: go
 go:
 - '1.4.2'
 install:
@@ -7,8 +7,11 @@ install:
 - go get github.com/rahulsom/mailcli
 - goxc -t
 - gem install asciidoctor
-script:
-- ./travis.sh
+script: ./travis.sh
+env:
+  global:
+  - GIT_NAME="Rahul Somasunderam"
+  - GIT_EMAIL="rahul.som@gmail.com"
 cache:
   directories:
     - "$HOME/gopath"
