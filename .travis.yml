@@ -1,17 +1,18 @@
 sudo: false
 language: go
 go:
-- '1.4.2'
+- 1.4.2
 install:
 - go get github.com/laher/goxc > /dev/null 2> /dev/null
 - go get github.com/rahulsom/mailcli
 - goxc -t
 - gem install asciidoctor
-script: ./travis.sh
+script: "./travis.sh"
 env:
   global:
   - GIT_NAME="Rahul Somasunderam"
   - GIT_EMAIL="rahul.som@gmail.com"
+  - secure: oFUmAO2vuj5vNUhj3R76eX5nbIDoMw5PSmYUsy+qdD8BXlDlkBdgXMHC6OLf5l6bQ6tVcMxJDlryZzUtH8U2+SUr4/25CBIEv9AUWLIlFSiWWxARa9xE4eQxCpancjVOMmaCeM1XCpuGS3zH4ZFJXiBpgt7KNax8jZb9NPJxgz0Ki39u5Rbykr2Q2HhvhDF3PufmCGDscxh2u9DShpRhydOD3/EIPnGvYNxZ6qjL5exDqEnHw333lURo2vTp1PpWj+VIkvdEH0bp7hwryRbha+u73iiFx3DyqlftuDuclgYwxxelABqwPnd/tfGtVnMLp/VGT27YJHyB1RETcFDw2Ywojvk8t2oe1uEUGXGNbf/qXgjcCfWSwS7fEK29tqja9AfLeKx2GBwo2/9YL6Le+yYIXyO5pAqeXVdl7v/cfgB0+MSia8jOBQCLUGJ4+iDSb+XhrCVd0cZI7ALQ1jRVhQqMCmDeFKMBekFuU8W3NkbU4JK9OdZPahcxnR6uxr4D1RGtQNXIlM3ZFS9zuiPmoC3sK86xexAFN8RwfJ0nX0pJSPmkerEU8QASBh09c4rZ2Ypc6JlWEu0HlzdJHjqkvgd/dUSpM6V8rKSZM2BfqWJqNr0U5Xx4wkHY5+boSKz4CazCAsBjL0cN+IFxgbCFRf1fNRza3d9dn2Rc0FAZPUY=
 cache:
   directories:
-    - "$HOME/gopath"
+  - "$HOME/gopath"
