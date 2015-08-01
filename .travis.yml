@@ -4,10 +4,11 @@ go:
 - '1.4.2'
 install:
 - go get github.com/laher/goxc
-- goxc -t
+- go get github.com/rahulsom/mailcli
+# - goxc -t
 script:
-- go test
-- goxc
+- go build
+# - goxc
 cache:
   directories:
     - "$HOME/gopath"
