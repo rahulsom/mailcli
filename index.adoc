@@ -1,0 +1,102 @@
+= mailcli
+Rahul Somasunderam <rahul.som@gmail.com>
+:toc: left
+
+CLI that lets you pipe output to email using SendGrid
+
+== Introduction
+Very often you find yourself having to copy the output of asciidoctor
+and paste it into your mail client only to realize that it's messed up
+by then.
+
+Or sometimes you want to run some commands and take their output and
+automate emails.
+
+May be you're using Exchange and can't really automate email without
+jumping through hoops.
+
+Well, look no further; we now have `mailcli`.
+
+== Getting Started
+You will have to sign up for a SendGrid account first. This will require
+you to use an email address that's not a public domain. Once you're done
+signing up for your account, in your shell profile declare some
+environment variables
+
+[source,bash]
+----
+export SENDGRID_USER=<username>
+export SENDGRID_PASS=<password>
+export SENDGRID_FROM=sender@example.com
+----
+
+You could skip that and key set your environment every time you want to
+run the `mailcli` command, but that ends up getting really painful.
+
+== Installation
+
+You have several options to install mailcli
+
+=== Go get
+
+If you have already installed the go sdk on your machine and prefer using
+`go get`, you can use that.
+
+[source,bash]
+----
+go get github.com/rahulsom/mailcli
+----
+
+=== Direct download
+
+TODO
+
+== Usage
+
+=== Help
+To see help, say
+
+[source,bash]
+----
+mailcli -h
+----
+
+=== Text
+
+[source,bash]
+----
+cat testresult.txt | mailcli -to "foo@bar.com" -s "Test Result"
+----
+
+=== HTML
+
+[source,bash]
+----
+cat document.html | mailcli -to "foo@bar.com" -s "What's for lunch" -html
+----
+
+=== Asciidoctor
+
+If you have asciidoctor installed, you could pipe that to an email too.
+
+[source,bash]
+----
+asciidoctor index.adoc -o - | mailcli -to "foo@bar.com" -s "MailCLI Docs" -html
+----
+
+== Email Address Format
+
+These are acceptable formats for emails
+
+* user@domain.com
+* Name <user@domain.com>
+* Very Long Name <user@domain.com>
+* "Name in quotes" <user@domain.com>
+
+If you have multiple recipients in a field, you must separate them using commas.
+*Not seimcolons*
+
+== TODO
+
+- [ ] Binaries in BinTray
+- [ ] Fix Travis build

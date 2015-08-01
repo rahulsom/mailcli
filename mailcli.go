@@ -16,18 +16,20 @@ func loadEnvironment() (string, string, string) {
 	password := os.ExpandEnv("${SENDGRID_PASS}")
 
 	if from == "" || username == "" || password == "" {
-		log.Panic("You need to define SENDGRID_FROM, SENDGRID_USER, SENDGRID_PASS in the environment.")
+		log.Println("You need to define SENDGRID_FROM, SENDGRID_USER, SENDGRID_PASS in the environment.")
+		os.Exit(1)
 	}
 
 	return from, username, password
 }
 
-func parseRecipients(input *string, optional bool) []*mail.Address {
+func parseRecipients(input *string) []*mail.Address {
 	recipients, err := mail.ParseAddressList(*input)
-	if err != nil && optional == false {
-		log.Panic("Could not parse arguments")
+	if err != nil {
+		return []*mail.Address{}
 	}
 
+	log.Println("Recipients are", recipients)
 	return recipients
 }
 
@@ -39,16 +41,34 @@ func main() {
 	bcc := flag.String("bcc", "", "Recipients in BCC")
 	subject := flag.String("s", "", "Subject")
 	isHtml := flag.Bool("html", false, "Send as HTML")
+	help := flag.Bool("h", false, "Display this help message")
 
 	flag.Parse()
+
+	if *help {
+		flag.Usage()
+		os.Exit(0)
+	}
+
+	if *to == "" && *cc == "" && *bcc == "" {
+		log.Println("Need atleast one of to,cc,bcc")
+		flag.Usage()
+		os.Exit(2)
+	}
+
+	if *subject == "" {
+		log.Println("Subject cannot be empty")
+		flag.Usage()
+		os.Exit(3)
+	}
 
 	sg := sendgrid.NewSendGridClient(username, password)
 	message := sendgrid.NewMail()
 
 	message.SetFrom(from)
-	message.AddRecipients(parseRecipients(to, false))
-	message.AddCcRecipients(parseRecipients(cc, true))
-	message.AddBccRecipients(parseRecipients(bcc, true))
+	message.AddRecipients(parseRecipients(to))
+	message.AddCcRecipients(parseRecipients(cc))
+	message.AddBccRecipients(parseRecipients(bcc))
 	message.SetSubject(*subject)
 
 	b, err := ioutil.ReadAll(os.Stdin)
@@ -65,6 +85,7 @@ func main() {
 		log.Println("This is Text")
 	}
 
+//	fmt.Println ("SG",sg)
 	if r := sg.Send(message); r == nil {
 		fmt.Println("Email sent!")
 	} else {
