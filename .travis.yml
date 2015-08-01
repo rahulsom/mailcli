@@ -6,6 +6,7 @@ install:
 - go get github.com/laher/goxc
 - goxc -t
 script:
+- go test
 - goxc
 cache:
   directories:
