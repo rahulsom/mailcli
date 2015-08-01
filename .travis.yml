@@ -5,10 +5,9 @@ go:
 install:
 - go get github.com/laher/goxc
 - go get github.com/rahulsom/mailcli
-# - goxc -t
+- goxc -t
 script:
-- go build
-# - goxc
+- goxc
 cache:
   directories:
     - "$HOME/gopath"
