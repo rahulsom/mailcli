@@ -1,4 +1,4 @@
-= mailcli
+= MailCLI
 Rahul Somasunderam <rahul.som@gmail.com>
 :toc: left
 
@@ -30,8 +30,8 @@ export SENDGRID_PASS=<password>
 export SENDGRID_FROM=sender@example.com
 ----
 
-You could skip that and key set your environment every time you want to
-run the `mailcli` command, but that ends up getting really painful.
+You could skip that and set your environment every time you want to run
+the `mailcli` command, but that ends up getting really painful.
 
 == Installation
 
@@ -99,4 +99,3 @@ If you have multiple recipients in a field, you must separate them using commas.
 == TODO
 
 - [ ] Binaries in BinTray
-- [ ] Fix Travis build

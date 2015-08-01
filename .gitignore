@@ -74,4 +74,5 @@ _testmain.go
 *.test
 *.prof
 
-
+### Asciidoctor
+index.html
