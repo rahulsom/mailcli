@@ -8,7 +8,7 @@ if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_REPO_SLUG == "rahulsom/mailcli" && $
 
   # SNAPSHOT_DIR=$HOME/gopath/bin/mailcli-xc/snapshot
   asciidoctor \
-     -a mailcliVersion=$(ls -1tr /Users/rahul/go/bin/mailcli-xc/ | tail -1) \
+     -a mailcliVersion=$(ls -1tr $HOME/gopath/bin/mailcli-xc/ | tail -1) \
      index.adoc
 
   git config --global user.name "$GIT_NAME"
