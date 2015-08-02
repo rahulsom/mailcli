@@ -437,7 +437,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </ul>
 </li>
 <li><a href="#_email_address_format">Email Address Format</a></li>
-<li><a href="#_todo">TODO</a></li>
 </ul>
 </div>
 </div>
@@ -509,6 +508,14 @@ the <code>mailcli</code> command, but that ends up getting really painful.</p>
 <pre class="highlight"><code class="language-bash" data-lang="bash">go get github.com/rahulsom/mailcli</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>This is the preferred approach, beacuse you can then update it without
+giving it much thought.</p>
+</div>
+<div class="paragraph">
+<p>However, setting up go is not for everyone, so there is the direct
+download approach.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="_direct_download">Direct download</h3>
@@ -519,17 +526,11 @@ the <code>mailcli</code> command, but that ends up getting really painful.</p>
 <div class="title">Note</div>
 </td>
 <td class="content">
-This is WIP. We now have the capability to generate the binaries. It
-will take some work to get them uploaded to bintray for consumption. Also
-Mac Signing is not implemented yet.
+This is WIP. It hasn&#8217;t been tested in all platforms. If it does not
+work, please raise a bug on github issues.
 </td>
 </tr>
 </table>
-</div>
-<div class="imageblock">
-<div class="content">
-<a class="image" href="https://bintray.com/rahulsom/golang/mailcli/_latestVersion"><img src="https://api.bintray.com/packages/rahulsom/golang/mailcli/images/download.svg" alt="download"></a>
-</div>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -613,18 +614,9 @@ Mac Signing is not implemented yet.
 </tr>
 </tbody>
 </table>
-<div class="sect3">
-<h4 id="_other_files">Other files</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><a href=".goxc-temp/control.tar.gz">control.tar.gz</a></p>
-</li>
-<li>
-<p><a href=".goxc-temp/data.tar.gz">data.tar.gz</a></p>
-</li>
-</ul>
-</div>
+<div class="paragraph">
+<p>Once you&#8217;ve downloaded the right archive for your platform, make sure the
+executable is in your path. Then you&#8217;re all set.</p>
 </div>
 </div>
 </div>
@@ -699,22 +691,10 @@ Very Long Name &lt;user@domain.com&gt;
 </div>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_todo">TODO</h2>
-<div class="sectionbody">
-<div class="ulist checklist">
-<ul class="checklist">
-<li>
-<p>&#10063; Binaries in BinTray</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2015-08-02 05:30:56 UTC
+Last updated 2015-08-02 05:51:29 UTC
 </div>
 </div>
 </body>
