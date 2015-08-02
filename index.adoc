@@ -54,6 +54,8 @@ NOTE: This is WIP. We now have the capability to generate the binaries. It
 will take some work to get them uploaded to bintray for consumption. Also
 Mac Signing is not implemented yet.
 
+image::https://api.bintray.com/packages/rahulsom/golang/mailcli/images/download.svg[link="https://bintray.com/rahulsom/golang/mailcli/_latestVersion"]
+
 [cols="4*"]
 |===
 |
@@ -62,57 +64,57 @@ Mac Signing is not implemented yet.
 | arm
 
 | Darwin (Apple Mac)
-| {binaryname}_darwin_386.zip
-| {binaryname}_darwin_amd64.zip
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_darwin_386.zip?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_darwin_amd64.zip?direct
 |
 
 | FreeBSD
-| {binaryname}_freebsd_386.zip
-| {binaryname}_freebsd_amd64.zip
-| {binaryname}_freebsd_arm.zip
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_freebsd_386.zip?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_freebsd_amd64.zip?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_freebsd_arm.zip?direct
 
 | Debian
-| {binaryname}_snapshot_amd64.deb
-| {binaryname}_snapshot_armhf.deb
-| {binaryname}_snapshot_i386.deb
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_snapshot_amd64.deb?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_snapshot_armhf.deb?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_snapshot_i386.deb?direct
 
 | Other Linux
-| {binaryname}_linux_386.tar.gz
-| {binaryname}_linux_amd64.tar.gz
-| {binaryname}_linux_arm.tar.gz
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_linux_386.tar.gz?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_linux_amd64.tar.gz?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_linux_arm.tar.gz?direct
 
 | MS Windows
-| {binaryname}_windows_386.zip
-| {binaryname}_windows_amd64.zip
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_windows_386.zip?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_windows_amd64.zip?direct
 |
 
 | NetBSD
-| {binaryname}_netbsd_386.zip
-| {binaryname}_netbsd_amd64.zip
-| {binaryname}_netbsd_arm.zip
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_netbsd_386.zip?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_netbsd_amd64.zip?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_netbsd_arm.zip?direct
 
 | OpenBSD
-| {binaryname}_openbsd_386.zip
-| {binaryname}_openbsd_amd64.zip
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_openbsd_386.zip?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_openbsd_amd64.zip?direct
 |
 
 | DragonFly
-| {binaryname}_dragonfly_386.zip
-| {binaryname}_dragonfly_amd64.zip
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_dragonfly_386.zip?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_dragonfly_amd64.zip?direct
 |
 
 | NaCl
-| {binaryname}_nacl_386.zip
-| {binaryname}_nacl_amd64p32.zip
-| {binaryname}_nacl_arm.zip
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_nacl_386.zip?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_nacl_amd64p32.zip?direct
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_nacl_arm.zip?direct
 
 | Solaris
 |
-| {binaryname}_solaris_amd64.zip
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_solaris_amd64.zip?direct
 |
 
 | Plan 9
-| {binaryname}_plan9_386.zip
+| https://dl.bintray.com/content/rahulsom/golang/{binaryname}_{mailcliVersion}_plan9_386.zip?direct
 |
 |
 

@@ -7,7 +7,9 @@ if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_REPO_SLUG == "rahulsom/mailcli" && $
   goxc && goxc bintray
 
   # SNAPSHOT_DIR=$HOME/gopath/bin/mailcli-xc/snapshot
-  asciidoctor index.adoc
+  asciidoctor \
+     -a mailcliVersion=$(ls -1tr /Users/rahul/go/bin/mailcli-xc/ | tail -1) \
+     index.adoc
 
   git config --global user.name "$GIT_NAME"
   git config --global user.email "$GIT_EMAIL"

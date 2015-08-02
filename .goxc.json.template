@@ -4,10 +4,10 @@
   "ConfigVersion": "0.9",
   "TaskSettings": {
     "bintray" : {
-      "package" : "mailcli",
       "subject": "rahulsom",
+      "repository": "golang",
+      "package" : "mailcli",
       "apikey": "$BINTRAY_APIKEY",
-      "repository": "myjava",
       "downloadspage": "bintray.md"
     }
   }
