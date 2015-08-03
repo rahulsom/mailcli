@@ -4,10 +4,12 @@ import (
 	"flag"
 	"fmt"
 	"github.com/sendgrid/sendgrid-go"
+	"github.com/vanng822/go-premailer/premailer"
 	"io/ioutil"
 	"log"
 	"net/mail"
 	"os"
+	"regexp"
 )
 
 func loadEnvironment() (string, string, string) {
@@ -77,15 +79,28 @@ func main() {
 		log.Panic("Could not read stdin")
 	}
 
+	inputString := string(b)
+
 	if *isHtml {
-		message.SetHTML(string(b))
+		// This fixes a bug in andybalholm/cascadia in dealing with :: in css for somethings.
+		regex := regexp.MustCompile("(?m)^.*::.*$")
+		inputString = regex.ReplaceAllLiteralString(inputString, "")
+
+		// This turns stylesheets into inline styles so email clients respect the css.
+		prem := premailer.NewPremailerFromString(inputString, premailer.NewOptions())
+		htmlString, err := prem.Transform()
+		if err != nil {
+			log.Fatal(err)
+		}
+
+		message.SetHTML(htmlString)
 		log.Println("This is HTML")
 	} else {
-		message.SetText(string(b))
+		message.SetText(inputString)
 		log.Println("This is Text")
 	}
 
-//	fmt.Println ("SG",sg)
+	//	fmt.Println ("SG",sg)
 	if r := sg.Send(message); r == nil {
 		fmt.Println("Email sent!")
 	} else {
