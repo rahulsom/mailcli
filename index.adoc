@@ -3,27 +3,24 @@ Rahul Somasunderam <rahul.som@gmail.com>
 :toc: left
 :binaryname: mailcli
 :bintrayHome: https://dl.bintray.com//content/rahulsom/golang/
+:linktext: Download
 
 CLI that lets you pipe output to email using SendGrid
 
 == Introduction
-Very often you find yourself having to copy the output of asciidoctor
-and paste it into your mail client only to realize that it's messed up
-by then.
+Very often you find yourself having to copy the output of asciidoctor and paste it into your mail client only to
+realize that it's messed up by then.
 
-Or sometimes you want to run some commands and take their output and
-automate emails.
+Or sometimes you want to run some commands and take their output and automate emails.
 
-May be you're using Exchange and can't really automate email without
-jumping through hoops.
+May be you're using Exchange and can't really automate email without jumping through hoops.
 
 Well, look no further; we now have `{binaryName}`.
 
 == Getting Started
-You will have to sign up for a SendGrid account first. This will require
-you to use an email address that's not a public mail server. Once you're done
-signing up for your account, in your shell profile declare some
-environment variables
+You will have to sign up for a SendGrid account first. This will require you to use an email address that's not a
+public mail server. Once you're done signing up for your account, in your shell profile declare some environment
+variables
 
 [source,bash]
 ----
@@ -32,8 +29,8 @@ export SENDGRID_PASS=<password>
 export SENDGRID_FROM=sender@example.com
 ----
 
-You could skip that and set your environment every time you want to run
-the `{binaryName}` command, but that ends up getting really painful.
+You could skip that and set your environment every time you want to run the `{binaryName}` command, but that ends
+up getting really painful.
 
 == Installation
 
@@ -41,19 +38,16 @@ You have several options to install {binaryName}
 
 === Go get
 
-If you have already installed the go sdk on your machine and prefer using
-`go get`, you can use that.
+If you have already installed the go sdk on your machine and prefer using `go get`, you can use that.
 
 [source,bash,subs="attributes+"]
 ----
 go get github.com/rahulsom/{binaryName}
 ----
 
-This is the preferred approach, beacuse you can then update it without
-giving it much thought.
+This is the preferred approach, beacuse you can then update it without giving it much thought.
 
-However, setting up go is not for everyone, so there is the direct
-download approach.
+However, setting up go is not for everyone, so there is the direct download approach.
 
 === Direct download
 
@@ -70,64 +64,64 @@ work, please raise a bug on github issues.
 | arm
 
 | Darwin (Apple Mac)
-| {bintrayHome}{binaryname}_{mailcliVersion}_darwin_386.zip?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_darwin_amd64.zip?direct[Download]
+| {bintrayHome}{binaryname}_{mailcliVersion}_darwin_386.zip?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_darwin_amd64.zip?direct[{linktext}]
 |
 
 | FreeBSD
-| {bintrayHome}{binaryname}_{mailcliVersion}_freebsd_386.zip?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_freebsd_amd64.zip?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_freebsd_arm.zip?direct[Download]
+| {bintrayHome}{binaryname}_{mailcliVersion}_freebsd_386.zip?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_freebsd_amd64.zip?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_freebsd_arm.zip?direct[{linktext}]
 
 | Debian
-| {bintrayHome}{binaryname}_{mailcliVersion}_snapshot_amd64.deb?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_snapshot_armhf.deb?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_snapshot_i386.deb?direct[Download]
+| {bintrayHome}{binaryname}_{mailcliVersion}_snapshot_amd64.deb?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_snapshot_armhf.deb?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_snapshot_i386.deb?direct[{linktext}]
 
 | Other Linux
-| {bintrayHome}{binaryname}_{mailcliVersion}_linux_386.tar.gz?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_linux_amd64.tar.gz?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_linux_arm.tar.gz?direct[Download]
+| {bintrayHome}{binaryname}_{mailcliVersion}_linux_386.tar.gz?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_linux_amd64.tar.gz?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_linux_arm.tar.gz?direct[{linktext}]
 
 | MS Windows
-| {bintrayHome}{binaryname}_{mailcliVersion}_windows_386.zip?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_windows_amd64.zip?direct[Download]
+| {bintrayHome}{binaryname}_{mailcliVersion}_windows_386.zip?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_windows_amd64.zip?direct[{linktext}]
 |
 
 | NetBSD
-| {bintrayHome}{binaryname}_{mailcliVersion}_netbsd_386.zip?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_netbsd_amd64.zip?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_netbsd_arm.zip?direct[Download]
+| {bintrayHome}{binaryname}_{mailcliVersion}_netbsd_386.zip?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_netbsd_amd64.zip?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_netbsd_arm.zip?direct[{linktext}]
 
 | OpenBSD
-| {bintrayHome}{binaryname}_{mailcliVersion}_openbsd_386.zip?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_openbsd_amd64.zip?direct[Download]
+| {bintrayHome}{binaryname}_{mailcliVersion}_openbsd_386.zip?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_openbsd_amd64.zip?direct[{linktext}]
 |
 
 | DragonFly
-| {bintrayHome}{binaryname}_{mailcliVersion}_dragonfly_386.zip?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_dragonfly_amd64.zip?direct[Download]
+| {bintrayHome}{binaryname}_{mailcliVersion}_dragonfly_386.zip?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_dragonfly_amd64.zip?direct[{linktext}]
 |
 
 | NaCl
-| {bintrayHome}{binaryname}_{mailcliVersion}_nacl_386.zip?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_nacl_amd64p32.zip?direct[Download]
-| {bintrayHome}{binaryname}_{mailcliVersion}_nacl_arm.zip?direct[Download]
+| {bintrayHome}{binaryname}_{mailcliVersion}_nacl_386.zip?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_nacl_amd64p32.zip?direct[{linktext}]
+| {bintrayHome}{binaryname}_{mailcliVersion}_nacl_arm.zip?direct[{linktext}]
 
 | Solaris
 |
-| {bintrayHome}{binaryname}_{mailcliVersion}_solaris_amd64.zip?direct[Download]
+| {bintrayHome}{binaryname}_{mailcliVersion}_solaris_amd64.zip?direct[{linktext}]
 |
 
 | Plan 9
-| {bintrayHome}{binaryname}_{mailcliVersion}_plan9_386.zip?direct[Download]
+| {bintrayHome}{binaryname}_{mailcliVersion}_plan9_386.zip?direct[{linktext}]
 |
 |
 
 |===
 
-Once you've downloaded the right archive for your platform, make sure the
-executable is in your path. Then you're all set.
+Once you've downloaded the right archive for your platform, make sure the executable is in your path. Then you're
+all set.
 
 
 //==== Other files
