@@ -3,7 +3,11 @@ go build
 
 if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_REPO_SLUG == "rahulsom/mailcli" && $TRAVIS_PULL_REQUEST == 'false' ]]; then
 
-  cat .goxc.json.template | sed -e "s/\$BINTRAY_APIKEY/$BINTRAY_APIKEY/g" > .goxc.json
+  cat .goxc.json.template \
+      | sed -e "s/\$BINTRAY_APIKEY/$BINTRAY_APIKEY/g" \
+      | sed -e "s/\$TRAVIS_JOB_ID/$TRAVIS_JOB_ID/g" \
+      > .goxc.json
+
   goxc && goxc bintray
 
   # SNAPSHOT_DIR=$HOME/gopath/bin/mailcli-xc/snapshot
@@ -18,6 +22,7 @@ if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_REPO_SLUG == "rahulsom/mailcli" && $
 
   git clone https://${GH_TOKEN}@github.com/$TRAVIS_REPO_SLUG.git -b gh-pages \
       gh-pages --single-branch > /dev/null
+
   cd gh-pages
   git rm -rf .
   cp ../index.html .
