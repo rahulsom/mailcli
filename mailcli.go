@@ -5,11 +5,13 @@ import (
 	"fmt"
 	"github.com/sendgrid/sendgrid-go"
 	"github.com/vanng822/go-premailer/premailer"
+	"github.com/PuerkitoBio/goquery"
 	"io/ioutil"
 	"log"
 	"net/mail"
 	"os"
 	"regexp"
+	"strings"
 )
 
 func loadEnvironment() (string, string, string) {
@@ -23,6 +25,19 @@ func loadEnvironment() (string, string, string) {
 	}
 
 	return from, username, password
+}
+
+func extractTitle(input *string) *string {
+	r := strings.NewReader(*input)
+
+	doc, err := goquery.NewDocumentFromReader(r)
+	if err != nil {
+		return nil
+	}
+
+	retval := doc.Find("title").First().Text()
+
+	return &retval
 }
 
 func parseRecipients(input *string) []*mail.Address {
@@ -41,7 +56,7 @@ func main() {
 	to := flag.String("to", "", "Recipients in To")
 	cc := flag.String("cc", "", "Recipients in CC")
 	bcc := flag.String("bcc", "", "Recipients in BCC")
-	subject := flag.String("s", "", "Subject")
+	subject := flag.String("s", "", "Subject; in case of html, can be inferred from title")
 	isHtml := flag.Bool("html", false, "Send as HTML")
 	help := flag.Bool("h", false, "Display this help message")
 
@@ -58,12 +73,6 @@ func main() {
 		os.Exit(2)
 	}
 
-	if *subject == "" {
-		log.Println("Subject cannot be empty")
-		flag.Usage()
-		os.Exit(3)
-	}
-
 	sg := sendgrid.NewSendGridClient(username, password)
 	message := sendgrid.NewMail()
 
@@ -71,7 +80,6 @@ func main() {
 	message.AddRecipients(parseRecipients(to))
 	message.AddCcRecipients(parseRecipients(cc))
 	message.AddBccRecipients(parseRecipients(bcc))
-	message.SetSubject(*subject)
 
 	b, err := ioutil.ReadAll(os.Stdin)
 
@@ -80,6 +88,17 @@ func main() {
 	}
 
 	inputString := string(b)
+
+	if *isHtml && (*subject == "") {
+		subject = extractTitle(&inputString)
+	}
+
+	if *subject == "" {
+		log.Println("Subject cannot be empty")
+		flag.Usage()
+		os.Exit(3)
+	}
+	message.SetSubject(*subject)
 
 	if *isHtml {
 		// This fixes a bug in andybalholm/cascadia in dealing with :: in css for somethings.
@@ -100,7 +119,6 @@ func main() {
 		log.Println("This is Text")
 	}
 
-	//	fmt.Println ("SG",sg)
 	if r := sg.Send(message); r == nil {
 		fmt.Println("Email sent!")
 	} else {

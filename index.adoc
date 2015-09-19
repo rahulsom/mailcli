@@ -154,13 +154,15 @@ cat testresult.txt | {binaryName} -to "foo@bar.com" -s "Test Result"
 cat document.html | {binaryName} -to "foo@bar.com" -s "What's for lunch" -html
 ----
 
+If the type is html, and the subject is not provided, it will be derived from the `title` of the document.
+
 === Asciidoctor
 
 If you have asciidoctor installed, you could pipe that to an email too.
 
 [source,bash,subs="attributes+"]
 ----
-asciidoctor index.adoc -o - | {binaryName} -to "foo@bar.com" -s "MailCLI Docs" -html
+asciidoctor index.adoc -o - | {binaryName} -to "foo@bar.com" -html
 ----
 
 == Email Address Format
