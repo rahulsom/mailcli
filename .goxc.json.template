@@ -1,6 +1,5 @@
 {
   "PackageVersion": "1.$TRAVIS_BUILD_NUMBER",
-  "PrereleaseInfo": "snapshot",
   "ConfigVersion": "0.9",
   "TaskSettings": {
     "bintray" : {
