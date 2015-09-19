@@ -50,6 +50,27 @@ func parseRecipients(input *string) []*mail.Address {
 	return recipients
 }
 
+func setTextBody(message *sendgrid.SGMail, inputString string) {
+	message.SetText(inputString)
+	log.Println("This is Text")
+}
+
+func setHtmlBody(message *sendgrid.SGMail, inputString string) {
+	// This fixes a bug in andybalholm/cascadia in dealing with :: in css for somethings.
+	regex := regexp.MustCompile("(?m)^.*::.*$")
+	inputString = regex.ReplaceAllLiteralString(inputString, "")
+
+	// This turns stylesheets into inline styles so email clients respect the css.
+	prem := premailer.NewPremailerFromString(inputString, premailer.NewOptions())
+	htmlString, err := prem.Transform()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	message.SetHTML(htmlString)
+	log.Println("This is HTML")
+}
+
 func main() {
 	from, username, password := loadEnvironment()
 
@@ -58,6 +79,7 @@ func main() {
 	bcc := flag.String("bcc", "", "Recipients in BCC")
 	subject := flag.String("s", "", "Subject; in case of html, can be inferred from title")
 	isHtml := flag.Bool("html", false, "Send as HTML")
+	isText := flag.Bool("text", false, "Send as Text")
 	help := flag.Bool("h", false, "Display this help message")
 
 	flag.Parse()
@@ -65,6 +87,12 @@ func main() {
 	if *help {
 		flag.Usage()
 		os.Exit(0)
+	}
+
+	if *isHtml && *isText {
+		log.Println("Can't be both html and text")
+		flag.Usage()
+		os.Exit(4)
 	}
 
 	if *to == "" && *cc == "" && *bcc == "" {
@@ -89,6 +117,13 @@ func main() {
 
 	inputString := string(b)
 
+	if !*isHtml && !*isText {
+		log.Println("html or text not specified. Will determine that...")
+		couldBeHtml := inputString[0:1] == "<"
+		log.Println("isHtml is: ", couldBeHtml)
+		isHtml = &couldBeHtml
+	}
+
 	if *isHtml && (*subject == "") {
 		subject = extractTitle(&inputString)
 	}
@@ -101,22 +136,11 @@ func main() {
 	message.SetSubject(*subject)
 
 	if *isHtml {
-		// This fixes a bug in andybalholm/cascadia in dealing with :: in css for somethings.
-		regex := regexp.MustCompile("(?m)^.*::.*$")
-		inputString = regex.ReplaceAllLiteralString(inputString, "")
+		setHtmlBody(message, inputString)
+	}
 
-		// This turns stylesheets into inline styles so email clients respect the css.
-		prem := premailer.NewPremailerFromString(inputString, premailer.NewOptions())
-		htmlString, err := prem.Transform()
-		if err != nil {
-			log.Fatal(err)
-		}
-
-		message.SetHTML(htmlString)
-		log.Println("This is HTML")
-	} else {
-		message.SetText(inputString)
-		log.Println("This is Text")
+	if *isText {
+		setTextBody(message, inputString)
 	}
 
 	if r := sg.Send(message); r == nil {
