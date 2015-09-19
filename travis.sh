@@ -1,4 +1,6 @@
 #!/bin/bash -e
+
+git clean -fdqx
 go build
 
 if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_REPO_SLUG == "rahulsom/mailcli" && $TRAVIS_PULL_REQUEST == 'false' ]]; then
