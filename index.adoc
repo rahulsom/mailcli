@@ -3,7 +3,8 @@ Rahul Somasunderam <rahul.som@gmail.com>
 :toc: left
 :binaryname: mailcli
 :bintrayHome: https://dl.bintray.com//content/rahulsom/golang/
-:linktext: Download
+:linktext: icon:download[]
+:icons: font
 
 CLI that lets you pipe output to email using SendGrid
 
