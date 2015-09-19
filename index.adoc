@@ -18,9 +18,9 @@ May be you're using Exchange and can't really automate email without jumping thr
 Well, look no further; we now have `{binaryName}`.
 
 == Getting Started
-You will have to sign up for a SendGrid account first. This will require you to use an email address that's not a
-public mail server. Once you're done signing up for your account, in your shell profile declare some environment
-variables
+You will have to sign up for a https://sendgrid.com[SendGrid] account first. This will require you to use an
+email address that's not a public mail server. Once you're done signing up for your account, in your shell profile
+declare some environment variables
 
 [source,bash]
 ----
