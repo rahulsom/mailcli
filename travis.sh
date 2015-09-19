@@ -7,7 +7,7 @@ if [[ $TRAVIS_BRANCH == 'master' && $TRAVIS_REPO_SLUG == "rahulsom/mailcli" && $
 
   cat .goxc.json.template \
       | sed -e "s/\$BINTRAY_APIKEY/$BINTRAY_APIKEY/g" \
-      | sed -e "s/\$TRAVIS_JOB_ID/$TRAVIS_JOB_ID/g" \
+      | sed -e "s/\$TRAVIS_BUILD_NUMBER/$TRAVIS_BUILD_NUMBER/g" \
       > .goxc.json
 
   goxc && goxc bintray
