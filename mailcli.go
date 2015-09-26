@@ -12,7 +12,20 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"path/filepath"
 )
+
+type multistring []string
+
+func (i *multistring) String() string {
+	return fmt.Sprintf("%s", *i)
+}
+
+func (i *multistring) Set(value string) error {
+	fmt.Printf("%s\n", value)
+	*i = append(*i, value)
+	return nil
+}
 
 func loadEnvironment() (string, string, string) {
 	from := os.ExpandEnv("${SENDGRID_FROM}")
@@ -71,8 +84,22 @@ func setHtmlBody(message *sendgrid.SGMail, inputString string) {
 	log.Println("This is HTML")
 }
 
+func attach(message *sendgrid.SGMail, inputString multistring) {
+	for _, elem := range inputString {
+		file, err := os.Open(elem)
+		if err != nil {
+			log.Println(err)
+		}
+		log.Println("Attaching ", filepath.Base(elem))
+		message.AddAttachment(filepath.Base(elem), file)
+
+	}
+}
+
 func main() {
 	from, username, password := loadEnvironment()
+
+	var attachments multistring
 
 	to := flag.String("to", "", "Recipients in To")
 	cc := flag.String("cc", "", "Recipients in CC")
@@ -80,6 +107,7 @@ func main() {
 	subject := flag.String("s", "", "Subject; in case of html, can be inferred from title")
 	isHtml := flag.Bool("html", false, "Send as HTML")
 	isText := flag.Bool("text", false, "Send as Text")
+	flag.Var(&attachments, "a", "Attach file")
 	help := flag.Bool("h", false, "Display this help message")
 
 	flag.Parse()
@@ -128,6 +156,8 @@ func main() {
 		subject = extractTitle(&inputString)
 	}
 
+	log.Println("extract subject")
+
 	if *subject == "" {
 		log.Println("Subject cannot be empty")
 		flag.Usage()
@@ -141,6 +171,10 @@ func main() {
 
 	if *isText {
 		setTextBody(message, inputString)
+	}
+
+	if len(attachments) > 0 {
+		attach(message, attachments)
 	}
 
 	if r := sg.Send(message); r == nil {
