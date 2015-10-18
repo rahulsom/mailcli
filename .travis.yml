@@ -1,7 +1,7 @@
 sudo: false
 language: go
 go:
-- 1.5.1
+- 1.4.2
 install:
 - go get github.com/laher/goxc > /dev/null 2> /dev/null
 - go get github.com/rahulsom/mailcli
