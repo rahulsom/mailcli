@@ -106,6 +106,7 @@ func main() {
 	bcc := flag.String("bcc", "", "Recipients in BCC")
 	subject := flag.String("s", "", "Subject; in case of html, can be inferred from title")
 	isHtml := flag.Bool("html", false, "Send as HTML")
+	cleanHtml := flag.Bool("clean", false, "Clean HTML")
 	isText := flag.Bool("text", false, "Send as Text")
 	flag.Var(&attachments, "a", "Attach file")
 	help := flag.Bool("h", false, "Display this help message")
@@ -166,7 +167,11 @@ func main() {
 	message.SetSubject(*subject)
 
 	if *isHtml {
-		setHtmlBody(message, inputString)
+		if (*cleanHtml) {
+			setHtmlBody(message, inputString)
+		} else {
+			message.SetHTML(inputString)
+		}
 	}
 
 	if *isText {
